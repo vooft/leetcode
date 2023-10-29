@@ -7,23 +7,20 @@
  * Output: 6
  * Explanation: [4,-1,2,1] has the largest sum = 6.
  */
-public class MaximumSubarray {
-    public int maxSubArray(int[] nums) {
-        int currentSum = nums[0];
-        int maxSum = currentSum;
-
-        for (int i = 1; i < nums.length; i++) {
+class MaximumSubarray {
+    fun maxSubArray(nums: IntArray): Int {
+        var currentSum = nums[0]
+        var maxSum = currentSum
+        for (i in 1 until nums.size) {
             if (currentSum + nums[i] > nums[i]) {
-                currentSum += nums[i];
+                currentSum += nums[i]
             } else {
-                currentSum = nums[i];
+                currentSum = nums[i]
             }
-
             if (currentSum > maxSum) {
-                maxSum = currentSum;
+                maxSum = currentSum
             }
         }
-
-        return maxSum;
+        return maxSum
     }
 }

@@ -1,5 +1,3 @@
-import java.util.Map;
-
 /**
  * Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
  *
@@ -43,42 +41,36 @@ import java.util.Map;
  * Output: 1994
  * Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
  */
-public class RomanToInteger {
+class RomanToInteger {
+    private val values: Map<Char, Int> = mapOf(
+        'I' to 1,
+        'V' to 5,
+        'X' to 10,
+        'L' to 50,
+        'C' to 100,
+        'D' to 500,
+        'M' to 1000
+    )
 
-    private final Map<Character, Integer> values = Map.of(
-            'I', 1,
-            'V', 5,
-            'X', 10,
-            'L', 50,
-            'C', 100,
-            'D', 500,
-            'M', 1000
-    );
-
-    public int romanToInt(String s) {
-        int result = 0;
-
-        int index = 0;
-        while (index < s.length() - 1) {
-            char currentChar = s.charAt(index);
-            int currentValue = values.get(currentChar);
-
-            char nextChar = s.charAt(index + 1);
-            int nextValue = values.get(nextChar);
-
+    fun romanToInt(s: String): Int {
+        var result = 0
+        var index = 0
+        while (index < s.length - 1) {
+            val currentChar = s[index]
+            val currentValue = values[currentChar]!!
+            val nextChar = s[index + 1]
+            val nextValue = values[nextChar]!!
             if (currentValue >= nextValue) {
-                result += currentValue;
-                index++;
+                result += currentValue
+                index++
             } else {
-                result += nextValue - currentValue;
-                index += 2;
+                result += nextValue - currentValue
+                index += 2
             }
         }
-
-        if (index == s.length() - 1) {
-            result += values.get(s.charAt(index));
+        if (index == s.length - 1) {
+            result += values[s[index]]!!
         }
-
-        return result;
+        return result
     }
 }

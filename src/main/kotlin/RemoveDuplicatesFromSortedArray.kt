@@ -31,18 +31,17 @@
  * // any modification to nums in your function would be known by the caller.
  * // using the length returned by your function, it prints the first len elements.
  * for (int i = 0; i < len; i++) {
- *     print(nums[i]);
+ * print(nums[i]);
  * }
  */
-public class RemoveDuplicatesFromSortedArray {
-    public int removeDuplicates(int[] nums) {
-        int currentIndex = 0;
-        for (int i = 1; i < nums.length; i++) {
+class RemoveDuplicatesFromSortedArray {
+    fun removeDuplicates(nums: IntArray): Int {
+        var currentIndex = 0
+        for (i in 1 until nums.size) {
             if (nums[currentIndex] != nums[i]) {
-                nums[++currentIndex] = nums[i];
+                nums[++currentIndex] = nums[i]
             }
         }
-
-        return currentIndex + 1;
+        return currentIndex + 1
     }
 }
