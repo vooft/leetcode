@@ -1,9 +1,9 @@
-import java.util.Arrays
+
 import java.util.LinkedList
-import java.util.function.Function
-import java.util.stream.Collectors
 
 /**
+ * https://leetcode.com/problems/valid-parentheses/
+ *
  * Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
  *
  * An input string is valid if:
@@ -33,27 +33,24 @@ import java.util.stream.Collectors
  * Input: "{[]}"
  * Output: true
  */
-class ValidParentheses {
+class P020_ValidParentheses {
     internal enum class Bracket(val open: Char, val close: Char) {
         CURLY('{', '}'),
         ROUND('(', ')'),
         SQUARE('[', ']')
     }
 
-    private val opens = Arrays.stream(Bracket.entries.toTypedArray())
-        .collect(Collectors.toMap(Function { it: Bracket -> it.open }, Function.identity()))
-    private val closes = Arrays.stream(Bracket.entries.toTypedArray())
-        .collect(Collectors.toMap(Function { it: Bracket -> it.close }, Function.identity()))
+    private val opens = Bracket.entries.associateBy { it.open }
+    private val closes = Bracket.entries.associateBy { it.close }
 
     fun isValid(s: String): Boolean {
         val stack = LinkedList<Bracket>()
-        for (i in 0 until s.length) {
-            val c = s[i]
-            val openBracket = opens[c]
+        for (element in s) {
+            val openBracket = opens[element]
             if (openBracket != null) {
                 stack.push(openBracket)
             } else {
-                val closeBracket = closes[c]
+                val closeBracket = closes[element]
                 if (stack.isEmpty() || stack.pop() != closeBracket) {
                     return false
                 }

@@ -1,4 +1,6 @@
 /**
+ * https://leetcode.com/problems/unique-binary-search-trees/
+ *
  * Given n, how many structurally unique BST's (binary search trees) that store values 1 ... n?
  *
  * Example:
@@ -14,7 +16,7 @@
  * /     /       \                 \
  * 2     1         2                 3
  */
-class UniqueBinarySearchTrees {
+class P096_UniqueBinarySearchTrees {
     fun numTrees(maxN: Int): Int {
         val precalculated = IntArray(maxN + 1)
         precalculated[0] = 1
@@ -28,7 +30,7 @@ class UniqueBinarySearchTrees {
         }
         if (maxN == 0) { // if there is nothing on the side, then only the item itself left
             return 1
-        } else if (maxN == 1) { // if there only one item on the side, then there is also only one way to structure them
+        } else if (maxN == 1) { // if there is only one item on the side, then there is also only one way to structure them
             return 1
         }
         var result = 0

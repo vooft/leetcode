@@ -1,4 +1,6 @@
 /**
+ * https://leetcode.com/problems/maximum-subarray/
+ *
  * Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
  *
  * Example:
@@ -7,7 +9,7 @@
  * Output: 6
  * Explanation: [4,-1,2,1] has the largest sum = 6.
  */
-class MaximumSubarray {
+class P053_MaximumSubarray {
     fun maxSubArray(nums: IntArray): Int {
         var currentSum = nums[0]
         var maxSum = currentSum

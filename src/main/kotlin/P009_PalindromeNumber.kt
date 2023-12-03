@@ -2,6 +2,8 @@ import java.util.Deque
 import java.util.LinkedList
 
 /**
+ * https://leetcode.com/problems/palindrome-number/
+ *
  * Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
  *
  * Example 1:
@@ -22,7 +24,7 @@ import java.util.LinkedList
  *
  * Could you solve it without converting the integer to a string?
  */
-class PalindromeNumber {
+class P009_PalindromeNumber {
     fun isPalindrome(originalValue: Int): Boolean {
         var value = originalValue
         if (value < 0) {

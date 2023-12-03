@@ -1,4 +1,6 @@
 /**
+ * https://leetcode.com/problems/roman-to-integer/
+ *
  * Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
  *
  * Symbol       Value
@@ -41,7 +43,7 @@
  * Output: 1994
  * Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
  */
-class RomanToInteger {
+class P013_RomanToInteger {
     private val values: Map<Char, Int> = mapOf(
         'I' to 1,
         'V' to 5,

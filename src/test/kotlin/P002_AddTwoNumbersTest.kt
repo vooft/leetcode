@@ -1,14 +1,14 @@
 
-import AddTwoNumbers.ListNode
+import P002_AddTwoNumbers.ListNode
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-internal class AddTwoNumbersTest {
+internal class P002_AddTwoNumbersTest {
     @ParameterizedTest
     @MethodSource("generateNumbers")
     fun should_add_numbers(numbers: TestCase) {
-        val addTwoNumbers = AddTwoNumbers()
+        val addTwoNumbers = P002_AddTwoNumbers()
         val result = addTwoNumbers.addTwoNumbers(numbers.number1, numbers.number2)
         Assertions.assertEquals(numbers.result, toLong(result))
     }
@@ -19,7 +19,7 @@ internal class AddTwoNumbersTest {
             var result: Long = 0
             var degree: Long = 1
             while (node != null) {
-                result += node.`val` * degree
+                result += node.value * degree
                 node = node.next
                 degree *= 10
             }

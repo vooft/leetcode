@@ -3,7 +3,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.Arrays
 
-internal class RemoveDuplicatesFromSortedArrayTest {
+internal class P026_RemoveDuplicatesFromSortedArrayTest {
     class TestCase(var nums: IntArray, var length: Int) {
         override fun toString(): String {
             return "{" +
@@ -16,7 +16,7 @@ internal class RemoveDuplicatesFromSortedArrayTest {
     @ParameterizedTest
     @MethodSource("testCases")
     fun should_remove_duplicates(testCase: TestCase) {
-        val removeDuplicatesFromSortedArray = RemoveDuplicatesFromSortedArray()
+        val removeDuplicatesFromSortedArray = P026_RemoveDuplicatesFromSortedArray()
         val newLength = removeDuplicatesFromSortedArray.removeDuplicates(testCase.nums)
         println(Arrays.stream(testCase.nums).limit(newLength.toLong()).toArray().contentToString())
         Assertions.assertEquals(newLength.toLong(), Arrays.stream(testCase.nums).distinct().count())

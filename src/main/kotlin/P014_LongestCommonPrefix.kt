@@ -1,4 +1,6 @@
 /**
+ * https://leetcode.com/problems/longest-common-prefix/
+ *
  * Write a function to find the longest common prefix string amongst an array of strings.
  *
  * If there is no common prefix, return an empty string "".
@@ -16,25 +18,25 @@
  *
  * All given inputs are in lowercase letters a-z.
  */
-class LongestCommonPrefix {
-    fun longestCommonPrefix(strs: Array<String>): String {
-        if (strs.size == 0) {
+class P014_LongestCommonPrefix {
+    fun longestCommonPrefix(strings: Array<String>): String {
+        if (strings.isEmpty()) {
             return ""
-        } else if (strs.size == 1) {
-            return strs[0]
+        } else if (strings.size == 1) {
+            return strings[0]
         }
-        val ref = strs[0].toCharArray()
+        val ref = strings[0].toCharArray()
         for (i in ref.indices) {
             val c = ref[i]
-            for (j in 1 until strs.size) {
-                if (strs[j].length == i) {
-                    return strs[j]
+            for (j in 1 until strings.size) {
+                if (strings[j].length == i) {
+                    return strings[j]
                 }
-                if (strs[j][i] != c) {
-                    return strs[j].substring(0, i)
+                if (strings[j][i] != c) {
+                    return strings[j].substring(0, i)
                 }
             }
         }
-        return strs[0]
+        return strings[0]
     }
 }
