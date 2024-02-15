@@ -1,6 +1,6 @@
 package extra
 
-class QuickStuff<T: Comparable<T>> {
+class QuickSortSelect<T: Comparable<T>> {
     fun sort(list: List<T>): List<T> {
         val l = list.toMutableList()
 
