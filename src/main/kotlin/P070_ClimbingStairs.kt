@@ -36,8 +36,13 @@ class P070_ClimbingStairs {
             1 -> 1 // 1
             2 -> 2 // 1 + 1 and 2
             else -> {
+                // if we climb 1 stair, then the remaining steps = climbStairs(n-1)
                 calculatedSteps[n - 1] = climbStairs(n - 1, calculatedSteps)
+
+                // if we climb 2 stairs, then the remaining steps = climbStairs(n-2)
                 calculatedSteps[n - 2] = climbStairs(n - 2, calculatedSteps)
+
+                // then the total number of ways is their sum
                 calculatedSteps[n - 1] + calculatedSteps[n - 2]
             }
         }

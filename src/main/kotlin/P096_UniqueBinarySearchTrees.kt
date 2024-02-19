@@ -17,29 +17,42 @@
  * 2     1         2                 3
  */
 class P096_UniqueBinarySearchTrees {
-    fun numTrees(maxN: Int): Int {
-        val precalculated = IntArray(maxN + 1)
-        precalculated[0] = 1
-        precalculated[1] = 1
-        return numTrees(maxN, precalculated)
-    }
+    fun numTrees(maxN: Int): Int = P096Solution(maxN).numTreesRecursively(maxN)
 
-    private fun numTrees(maxN: Int, precalculated: IntArray): Int {
-        if (precalculated[maxN] > 0) {
-            return precalculated[maxN]
+    private class P096Solution(maxN: Int) {
+        private val precalculated = IntArray(maxN + 1).also {
+            it[0] = 1
+            it[1] = 1
         }
-        if (maxN == 0) { // if there is nothing on the side, then only the item itself left
-            return 1
-        } else if (maxN == 1) { // if there is only one item on the side, then there is also only one way to structure them
-            return 1
+
+        fun numTreesRecursively(value: Int): Int {
+            if (precalculated[value] > 0) {
+                return precalculated[value]
+            }
+
+            when (value) {
+                // if both child nodes are null
+                0 -> return 1
+
+                // if there is only one child node
+                1 -> return 1
+            }
+
+            var result = 0
+
+            // iterate through all variants of the tree
+            // from when it is skewed towards left to skewed towards right
+            for (n in 0 until value) {
+                val leftN = numTreesRecursively(n)
+                val rightN = numTreesRecursively(value - n - 1)
+
+                // for each left variant there is rightN right variants
+                result += leftN * rightN
+            }
+
+            precalculated[value] = result
+            return result
         }
-        var result = 0
-        for (n in 0 until maxN) {
-            val leftN = numTrees(n, precalculated)
-            val rightN = numTrees(maxN - n - 1, precalculated)
-            result += leftN * rightN
-        }
-        precalculated[maxN] = result
-        return result
+
     }
 }

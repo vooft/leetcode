@@ -64,22 +64,33 @@ class P013_RomanToInteger {
     fun romanToInt(s: String): Int {
         var result = 0
         var index = 0
+
         while (index < s.length - 1) {
             val currentChar = s[index]
-            val currentValue = values[currentChar]!!
+            val currentCharValue = values.getValue(currentChar)
+
             val nextChar = s[index + 1]
-            val nextValue = values[nextChar]!!
-            if (currentValue >= nextValue) {
-                result += currentValue
+            val nextCharValue = values.getValue(nextChar)
+
+            // every "digit" can only consist of 2 characters
+
+            // next char is not a part of the current "digit"
+            // if it is greater or equal than current (for example, II)
+            if (currentCharValue >= nextCharValue) {
+                result += currentCharValue
                 index++
             } else {
-                result += nextValue - currentValue
+                // if the next char is greater, then it is part of the current "digit"
+                // for example, IX, IV, etc
+                result += nextCharValue - currentCharValue
                 index += 2
             }
         }
+
         if (index == s.length - 1) {
-            result += values[s[index]]!!
+            result += values.getValue(s[index])
         }
+
         return result
     }
 }
