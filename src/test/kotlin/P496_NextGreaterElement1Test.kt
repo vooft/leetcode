@@ -37,4 +37,16 @@ class P496_NextGreaterElement1Test {
 
         assertThat(actual).containsExactly(*expected)
     }
+
+    @Test
+    fun `simple test 4`() {
+        val nums1 = intArrayOf(1, 2, 3, 4)
+        val nums2 = intArrayOf(4, 6, 3, 2, 1, 5)
+
+        val expected = intArrayOf(5, 2, 6, 9, 11, 3, 7)
+
+        val actual = P496_NextGreaterElement1().nextGreaterElement(nums1, nums2)
+
+        assertThat(actual).containsExactly(*expected)
+    }
 }

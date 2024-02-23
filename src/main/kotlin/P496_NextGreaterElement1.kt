@@ -30,19 +30,24 @@
  * All the integers of nums1 also appear in nums2.
  */
 class P496_NextGreaterElement1 {
-    // bruteforce
     fun nextGreaterElement(nums1: IntArray, nums2: IntArray): IntArray {
-        val result = IntArray(nums1.size) { -1 }
+        val stack = ArrayDeque<Int>()
+        val nextGreatestMap = hashMapOf<Int, Int>()
 
-        for (i in result.indices) {
-            val current = nums1[i]
-            val index = nums2.indexOf(current)
-            for (j in (index+1)..<nums2.size) {
-                if (current < nums2[j]) {
-                    result[i] = nums2[j]
-                    break
-                }
+        for (num in nums2) {
+            while (stack.isNotEmpty() && num > stack.last()) {
+                val item = stack.removeLast()
+                nextGreatestMap[item] = num
             }
+
+            stack.add(num)
+
+            println("Stack for $num is $stack")
+        }
+
+        val result = IntArray(nums1.size)
+        for (i in nums1.indices) {
+            result[i] = nextGreatestMap[nums1[i]] ?: -1
         }
 
         return result
