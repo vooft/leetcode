@@ -27,7 +27,7 @@ class P078_Subsets {
         val head = list.first()
         val tail = list.drop(1)
 
-        return generateSublists(tail, acc.toMutableList()) +
-                generateSublists(tail, (acc + head).toMutableList())
+        return generateSublists(tail, acc.toList()) +
+                generateSublists(tail, (acc + head).toList())
     }
 }
