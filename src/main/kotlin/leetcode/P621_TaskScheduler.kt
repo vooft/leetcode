@@ -43,18 +43,19 @@ class P621_TaskScheduler {
             numberOfTasks[task] = numberOfTasks.getOrDefault(task, 0) + 1
         }
 
-        val mainQueue = PriorityQueue<TaskCount>(compareByDescending { it.count }).apply {
-            addAll(numberOfTasks.map { TaskCount(it.key, it.value) })
+        // for readability/understandability we can store task-count pair instead of just count
+        val mainQueue = PriorityQueue<Int>(compareByDescending { it }).apply {
+            addAll(numberOfTasks.values)
         }
-        val tempQueue = PriorityQueue<TaskCount>(compareByDescending { it.count })
+        val tempQueue = PriorityQueue<Int>(compareByDescending { it })
 
         var result = 0
         while (mainQueue.isNotEmpty()) {
             var currentWindow = 0
             while (currentWindow <= n && mainQueue.isNotEmpty()) {
                 val taskCount = mainQueue.remove()
-                if (taskCount.count > 1) {
-                    tempQueue.add(taskCount.copy(count = taskCount.count - 1))
+                if (taskCount > 1) {
+                    tempQueue.add(taskCount - 1)
                 }
 
                 currentWindow++
@@ -73,6 +74,4 @@ class P621_TaskScheduler {
 
         return result
     }
-
-    data class TaskCount(val task: Char, val count: Int)
 }
