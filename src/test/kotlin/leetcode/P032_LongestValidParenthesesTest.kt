@@ -1,7 +1,6 @@
 package leetcode
 
 import io.kotest.matchers.shouldBe
-import leetcode.extra.P032_LongestValidParentheses
 import org.junit.jupiter.api.Test
 
 class P032_LongestValidParenthesesTest {

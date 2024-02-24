@@ -3,7 +3,6 @@ package leetcode
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
-import leetcode.extra.P009_PalindromeNumber
 
 class P009_PalindromeNumberTest : FunSpec({
     context("should accept palindrome") {

@@ -1,7 +1,6 @@
 package leetcode
 
 import io.kotest.matchers.shouldBe
-import leetcode.extra.P997_FindTheTownJudge
 import org.junit.jupiter.api.Test
 
 class P997_FindTheTownJudgeTest {

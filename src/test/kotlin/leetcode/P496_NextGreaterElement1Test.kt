@@ -1,7 +1,6 @@
 package leetcode
 
 import io.kotest.matchers.shouldBe
-import leetcode.extra.P496_NextGreaterElement1
 import org.junit.jupiter.api.Test
 
 class P496_NextGreaterElement1Test {

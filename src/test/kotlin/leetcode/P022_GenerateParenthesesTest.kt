@@ -1,7 +1,6 @@
 package leetcode
 
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
-import leetcode.extra.P022_GenerateParentheses
 import org.junit.jupiter.api.Test
 
 class P022_GenerateParenthesesTest {

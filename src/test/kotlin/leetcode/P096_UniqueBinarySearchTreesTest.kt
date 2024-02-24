@@ -3,7 +3,6 @@ package leetcode
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
-import leetcode.extra.P096_UniqueBinarySearchTrees
 
 class P096_UniqueBinarySearchTreesTest : FunSpec({
     context("should find unique trees") {

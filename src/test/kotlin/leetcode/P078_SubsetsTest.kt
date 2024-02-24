@@ -1,7 +1,6 @@
 package leetcode
 
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
-import leetcode.extra.P078_Subsets
 import org.junit.jupiter.api.Test
 
 class P078_SubsetsTest {

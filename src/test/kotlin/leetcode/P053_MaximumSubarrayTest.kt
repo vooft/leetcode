@@ -1,6 +1,5 @@
 package leetcode
 
-import leetcode.extra.P053_MaximumSubarray
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 

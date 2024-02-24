@@ -3,7 +3,6 @@ package leetcode
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
-import leetcode.extra.P070_ClimbingStairs
 
 class P070_ClimbingStairsTest : FunSpec({
     context("climbing stairs") {

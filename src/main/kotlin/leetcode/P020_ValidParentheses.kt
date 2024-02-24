@@ -1,4 +1,4 @@
-package leetcode.extra
+package leetcode
 
 /**
  * https://leetcode.com/problems/valid-parentheses/

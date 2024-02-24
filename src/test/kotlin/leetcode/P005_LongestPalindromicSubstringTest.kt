@@ -1,6 +1,5 @@
 package leetcode
 
-import leetcode.extra.P005_LongestPalindromicSubstring
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

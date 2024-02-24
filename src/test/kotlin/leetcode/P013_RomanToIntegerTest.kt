@@ -3,7 +3,6 @@ package leetcode
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
-import leetcode.extra.P013_RomanToInteger
 
 class P013_RomanToIntegerTest : FunSpec({
     context("should parse roman number") {

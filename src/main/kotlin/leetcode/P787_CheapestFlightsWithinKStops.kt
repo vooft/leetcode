@@ -1,4 +1,4 @@
-package leetcode.extra
+package leetcode
 
 class P787_CheapestFlightsWithinKStops {
     fun findCheapestPrice(cities: Int, flights: Array<IntArray>, src: Int, dst: Int, maxStops: Int): Int {

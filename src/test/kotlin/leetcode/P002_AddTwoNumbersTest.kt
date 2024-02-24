@@ -3,8 +3,7 @@ package leetcode
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
-import leetcode.extra.P002_AddTwoNumbers
-import leetcode.extra.P002_AddTwoNumbers.ListNode
+import leetcode.P002_AddTwoNumbers.ListNode
 
 class P002_AddTwoNumbersTest : FunSpec({
     context("should add numbers") {

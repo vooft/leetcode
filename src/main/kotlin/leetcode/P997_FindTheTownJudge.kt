@@ -1,4 +1,4 @@
-package leetcode.extra
+package leetcode
 
 /**
  * https://leetcode.com/problems/find-the-town-judge

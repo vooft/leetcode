@@ -5,7 +5,6 @@ import io.kotest.datatest.IsStableType
 import io.kotest.datatest.withData
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
-import leetcode.extra.P026_RemoveDuplicatesFromSortedArray
 
 class P026_RemoveDuplicatesFromSortedArrayTest : FunSpec({
 

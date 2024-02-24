@@ -1,7 +1,6 @@
 package leetcode
 
 import io.kotest.matchers.shouldBe
-import leetcode.extra.P787_CheapestFlightsWithinKStops
 import leetcode.p787.MemoryLimitFlights
 import leetcode.p787.timelimit.TimeLimitFlightsPt1.pt1Flights
 import leetcode.p787.timelimit.TimeLimitFlightsPt2.pt2Flights

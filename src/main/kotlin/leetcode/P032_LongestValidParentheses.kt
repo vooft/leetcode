@@ -1,4 +1,4 @@
-package leetcode.extra
+package leetcode
 
 import java.util.BitSet
 
