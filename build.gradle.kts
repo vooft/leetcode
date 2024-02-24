@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     java
-    kotlin("jvm") version "1.9.20"
+    alias(libs.plugins.kotlin.jvm)
 }
 
 group = "com.vooft"
@@ -17,11 +17,9 @@ java {
 }
 
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.6.0")
-    testImplementation("org.assertj:assertj-core:3.25.3")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.0")
-
+    testImplementation(libs.kotest.runner)
+    testImplementation(libs.kotest.datatest)
+    testImplementation(libs.kotest.assertions)
 }
 
 tasks.withType<KotlinCompile> {

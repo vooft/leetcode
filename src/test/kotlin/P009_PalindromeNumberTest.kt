@@ -1,19 +1,18 @@
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
+import io.kotest.core.spec.style.FunSpec
+import io.kotest.datatest.withData
+import io.kotest.matchers.shouldBe
 
-internal class P009_PalindromeNumberTest {
-    @ParameterizedTest
-    @ValueSource(ints = [12321, 123321, 121, 333, 22, 1, 999999999])
-    fun should_accept_palindrome(value: Int) {
-        val palindromeNumber = P009_PalindromeNumber()
-        Assertions.assertTrue(palindromeNumber.isPalindrome(value))
+class P009_PalindromeNumberTest : FunSpec({
+    context("should accept palindrome") {
+        withData(12321, 123321, 121, 333, 22, 1, 999999999) {
+
+        }
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [-1, -99999, 123, 321, 123456789, Int.MAX_VALUE, Int.MIN_VALUE])
-    fun should_not_accept_palindrome(value: Int) {
-        val palindromeNumber = P009_PalindromeNumber()
-        Assertions.assertFalse(palindromeNumber.isPalindrome(value))
+    context("should not accept palindrome") {
+        withData(-1, -99999, 123, 321, 123456789, Int.MAX_VALUE, Int.MIN_VALUE) {
+            val palindromeNumber = P009_PalindromeNumber()
+            palindromeNumber.isPalindrome(it) shouldBe false
+        }
     }
-}
+})

@@ -1,5 +1,4 @@
-
-import org.assertj.core.api.Assertions.assertThat
+import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import p787.MemoryLimitFlights
 import p787.timelimit.TimeLimitFlightsPt1.pt1Flights
@@ -25,7 +24,7 @@ class P787_CheapestFlightsWithinKStopsTest {
             maxStops = 1
         )
 
-        assertThat(actual).isEqualTo(700)
+        actual shouldBe 700
     }
 
     @Test
@@ -42,7 +41,7 @@ class P787_CheapestFlightsWithinKStopsTest {
             maxStops = 1
         )
 
-        assertThat(actual).isEqualTo(200)
+        actual shouldBe 200
     }
 
     @Test
@@ -59,7 +58,7 @@ class P787_CheapestFlightsWithinKStopsTest {
             maxStops = 0
         )
 
-        assertThat(actual).isEqualTo(500)
+        actual shouldBe 500
     }
 
     @Test
@@ -79,7 +78,7 @@ class P787_CheapestFlightsWithinKStopsTest {
             maxStops = 1
         )
 
-        assertThat(actual).isEqualTo(-1)
+        actual shouldBe -1
     }
 
     @Test
@@ -97,7 +96,7 @@ class P787_CheapestFlightsWithinKStopsTest {
             maxStops = 1
         )
 
-        assertThat(actual).isEqualTo(6)
+        actual shouldBe 6
     }
 
     @Test
@@ -110,7 +109,7 @@ class P787_CheapestFlightsWithinKStopsTest {
             maxStops = 13
         )
 
-        assertThat(actual).isEqualTo(47)
+        actual shouldBe 47
     }
 
     @Test
@@ -123,6 +122,6 @@ class P787_CheapestFlightsWithinKStopsTest {
             maxStops = 99
         )
 
-        assertThat(actual).isEqualTo(-1)
+        actual shouldBe -1
     }
 }

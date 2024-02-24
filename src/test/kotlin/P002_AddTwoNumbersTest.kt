@@ -1,21 +1,38 @@
 
 import P002_AddTwoNumbers.ListNode
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import io.kotest.core.spec.style.FunSpec
+import io.kotest.datatest.withData
+import io.kotest.matchers.shouldBe
 
-internal class P002_AddTwoNumbersTest {
-    @ParameterizedTest
-    @MethodSource("generateNumbers")
-    fun should_add_numbers(numbers: TestCase) {
-        val addTwoNumbers = P002_AddTwoNumbers()
-        val result = addTwoNumbers.addTwoNumbers(numbers.number1, numbers.number2)
-        Assertions.assertEquals(numbers.result, toLong(result))
+class P002_AddTwoNumbersTest : FunSpec({
+    context("should add numbers") {
+        withData(
+            TestCase(123.toListNode(), 321.toListNode(), (123 + 321).toLong()),
+            TestCase(11.toListNode(), 12.toListNode(), (11 + 12).toLong()),
+            TestCase(1.toListNode(), 3.toListNode(), (1 + 3).toLong()),
+            TestCase(Int.MAX_VALUE.toListNode(), Int.MAX_VALUE.toListNode(), Int.MAX_VALUE + Int.MAX_VALUE.toLong()),
+            TestCase(0.toListNode(), 0.toListNode(), 0),
+            TestCase(12345.toListNode(), 321.toListNode(), (12345 + 321).toLong())
+        ) { numbers ->
+            val addTwoNumbers = P002_AddTwoNumbers()
+            val result = addTwoNumbers.addTwoNumbers(numbers.number1, numbers.number2)
+            numbers.result shouldBe result.toLong()
+        }
+    }
+}) {
+    private class TestCase(val number1: ListNode, val number2: ListNode, val result: Long) {
+        override fun toString(): String {
+            return "TestCase{" +
+                    "number1=" + number1 +
+                    ", number2=" + number2 +
+                    ", result=" + result +
+                    '}'
+        }
     }
 
     companion object {
-        private fun toLong(originalNode: ListNode?): Long {
-            var node = originalNode
+        private fun ListNode.toLong(): Long {
+            var node: ListNode? = this
             var result: Long = 0
             var degree: Long = 1
             while (node != null) {
@@ -26,8 +43,10 @@ internal class P002_AddTwoNumbersTest {
             return result
         }
 
-        private fun fromInt(originalValue: Int): ListNode? {
-            var value = originalValue
+        private fun Int.toListNode(): ListNode {
+            require(this >= 0) { "Can't convert negative value $this to ListNode" }
+
+            var value = this
             var result: ListNode? = null
             var current: ListNode? = null
             while (value > 0) {
@@ -42,29 +61,9 @@ internal class P002_AddTwoNumbersTest {
                 }
                 current = node
             }
-            return result
+            return result ?: ListNode(0)
         }
 
-        @JvmStatic
-        fun generateNumbers(): Collection<TestCase> {
-            return listOf(
-                TestCase(fromInt(123), fromInt(321), (123 + 321).toLong()),
-                TestCase(fromInt(11), fromInt(12), (11 + 12).toLong()),
-                TestCase(fromInt(1), fromInt(3), (1 + 3).toLong()),
-                TestCase(fromInt(Int.MAX_VALUE), fromInt(Int.MAX_VALUE), Int.MAX_VALUE + Int.MAX_VALUE.toLong()),
-                TestCase(fromInt(0), fromInt(0), 0),
-                TestCase(fromInt(12345), fromInt(321), (12345 + 321).toLong())
-            )
-        }
     }
 }
 
-internal class TestCase(var number1: ListNode?, var number2: ListNode?, var result: Long) {
-    override fun toString(): String {
-        return "TestCase{" +
-                "number1=" + number1 +
-                ", number2=" + number2 +
-                ", result=" + result +
-                '}'
-    }
-}

@@ -1,13 +1,13 @@
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
+import io.kotest.core.spec.style.FunSpec
+import io.kotest.datatest.withData
+import io.kotest.matchers.shouldBe
 
-internal class P070_ClimbingStairsTest {
-    @ParameterizedTest
-    @CsvSource("1,1", "2,2", "3,3", "4,5", "6,13")
-    fun testClimbingStars(numberOfStairs: Int, expectedResult: Int) {
-        val solution = P070_ClimbingStairs()
-        val actualResult = solution.climbStairs(numberOfStairs)
-        Assertions.assertEquals(expectedResult, actualResult)
+class P070_ClimbingStairsTest : FunSpec({
+    context("climbing stairs") {
+        withData(1 to 1, 2 to 2, 3 to 3, 4 to 5, 6 to 13) { (numberOfStairs, expectedResult) ->
+            val solution = P070_ClimbingStairs()
+            val actualResult = solution.climbStairs(numberOfStairs)
+            actualResult shouldBe expectedResult
+        }
     }
-}
+})

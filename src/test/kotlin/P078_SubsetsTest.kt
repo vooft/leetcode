@@ -1,5 +1,4 @@
-
-import org.assertj.core.api.Assertions.assertThat
+import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import org.junit.jupiter.api.Test
 
 class P078_SubsetsTest {
@@ -15,6 +14,6 @@ class P078_SubsetsTest {
             listOf(1, 2, 3)
         )
 
-        assertThat(actual).containsExactlyInAnyOrder(*expected.toTypedArray())
+        actual shouldContainExactlyInAnyOrder expected
     }
 }

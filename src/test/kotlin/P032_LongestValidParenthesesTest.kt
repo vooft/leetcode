@@ -1,4 +1,4 @@
-import org.assertj.core.api.Assertions.assertThat
+import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
 class P032_LongestValidParenthesesTest {
@@ -8,7 +8,7 @@ class P032_LongestValidParenthesesTest {
         val expected = 2
         val actual = P032_LongestValidParentheses().longestValidParentheses(string)
 
-        assertThat(actual).isEqualTo(expected)
+        actual shouldBe expected
     }
 
     @Test
@@ -17,7 +17,7 @@ class P032_LongestValidParenthesesTest {
         val expected = 4
         val actual = P032_LongestValidParentheses().longestValidParentheses(string)
 
-        assertThat(actual).isEqualTo(expected)
+        actual shouldBe expected
     }
 
     @Test
@@ -26,7 +26,7 @@ class P032_LongestValidParenthesesTest {
         val expected = 0
         val actual = P032_LongestValidParentheses().longestValidParentheses(string)
 
-        assertThat(actual).isEqualTo(expected)
+        actual shouldBe expected
     }
 
     @Test
@@ -35,6 +35,6 @@ class P032_LongestValidParenthesesTest {
         val expected = 8
         val actual = P032_LongestValidParentheses().longestValidParentheses(string)
 
-        assertThat(actual).isEqualTo(expected)
+        actual shouldBe expected
     }
 }

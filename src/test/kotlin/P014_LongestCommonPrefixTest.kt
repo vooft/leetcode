@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-internal class P014_LongestCommonPrefixTest {
+class P014_LongestCommonPrefixTest {
     @Test
     fun should_find_longest_prefix() {
         val solution = P014_LongestCommonPrefix()

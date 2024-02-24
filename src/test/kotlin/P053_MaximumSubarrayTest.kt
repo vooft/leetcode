@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-internal class P053_MaximumSubarrayTest {
+class P053_MaximumSubarrayTest {
     private val maximumSubarray = P053_MaximumSubarray()
     @Test
     fun testSample() {

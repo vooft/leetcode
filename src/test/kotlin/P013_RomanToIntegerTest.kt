@@ -1,12 +1,20 @@
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
+import io.kotest.core.spec.style.FunSpec
+import io.kotest.datatest.withData
+import io.kotest.matchers.shouldBe
 
-internal class P013_RomanToIntegerTest {
-    @ParameterizedTest
-    @CsvSource("III,3", "LVIII,58", "MCMXCIV,1994", "MDCCLXXVI,1776", "I,1", "II,2", "MDCXCV,1695")
-    fun should_parse_roman_number(romanNumber: String?, number: Int) {
-        val romanToInteger = P013_RomanToInteger()
-        Assertions.assertEquals(number, romanToInteger.romanToInt(romanNumber!!))
+class P013_RomanToIntegerTest : FunSpec({
+    context("should parse roman number") {
+        withData(
+            "III" to 3,
+            "LVIII" to 58,
+            "MCMXCIV" to 1994,
+            "MDCCLXXVI" to 1776,
+            "I" to 1,
+            "II" to 2,
+            "MDCXCV" to 1695
+        ) { (romanNumber, number) ->
+            val romanToInteger = P013_RomanToInteger()
+            romanToInteger.romanToInt(romanNumber) shouldBe number
+        }
     }
-}
+})

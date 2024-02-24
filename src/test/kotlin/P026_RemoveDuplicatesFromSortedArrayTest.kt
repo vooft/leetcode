@@ -1,37 +1,28 @@
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
-import java.util.Arrays
+import io.kotest.core.spec.style.FunSpec
+import io.kotest.datatest.IsStableType
+import io.kotest.datatest.withData
+import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.shouldBe
 
-internal class P026_RemoveDuplicatesFromSortedArrayTest {
-    class TestCase(var nums: IntArray, var length: Int) {
-        override fun toString(): String {
-            return "{" +
-                    "nums=" + nums.contentToString() +
-                    ", length=" + length +
-                    '}'
+class P026_RemoveDuplicatesFromSortedArrayTest : FunSpec({
+
+    context("should remove duplicates") {
+        withData(
+            TestCase(listOf(1, 1, 2), 2),
+            TestCase(listOf(0, 0, 1, 1, 1, 2, 2, 3, 3, 4), 5),
+            TestCase(List(10000) { it }, 10000),
+            TestCase(List(10000) { 1 }, 1)
+        ) { testCase ->
+            val removeDuplicatesFromSortedArray = P026_RemoveDuplicatesFromSortedArray()
+            val newLength = removeDuplicatesFromSortedArray.removeDuplicates(testCase.nums.toIntArray())
+
+            println(testCase.nums.take(newLength))
+
+            testCase.nums.distinct() shouldHaveSize newLength
+            testCase.length shouldBe newLength
         }
     }
-
-    @ParameterizedTest
-    @MethodSource("testCases")
-    fun should_remove_duplicates(testCase: TestCase) {
-        val removeDuplicatesFromSortedArray = P026_RemoveDuplicatesFromSortedArray()
-        val newLength = removeDuplicatesFromSortedArray.removeDuplicates(testCase.nums)
-        println(Arrays.stream(testCase.nums).limit(newLength.toLong()).toArray().contentToString())
-        Assertions.assertEquals(newLength.toLong(), Arrays.stream(testCase.nums).distinct().count())
-        Assertions.assertEquals(testCase.length, newLength)
-    }
-
-    companion object {
-        @JvmStatic
-        fun testCases(): Collection<TestCase> {
-            return listOf(
-                TestCase(intArrayOf(1, 1, 2), 2),
-                TestCase(intArrayOf(0, 0, 1, 1, 1, 2, 2, 3, 3, 4), 5),
-                TestCase(IntArray(10000) { it }, 10000),
-                TestCase(IntArray(10000) { 1 }, 1)
-            )
-        }
-    }
+}) {
+    @IsStableType
+    private data class TestCase(val nums: List<Int>, val length: Int)
 }

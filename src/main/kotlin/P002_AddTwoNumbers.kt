@@ -18,9 +18,9 @@ class P002_AddTwoNumbers {
         var next: ListNode? = null
     }
 
-    fun addTwoNumbers(originalL1: ListNode?, originalL2: ListNode?): ListNode? {
-        var l1 = originalL1
-        var l2 = originalL2
+    fun addTwoNumbers(originalL1: ListNode, originalL2: ListNode): ListNode {
+        var l1: ListNode? = originalL1
+        var l2: ListNode? = originalL2
 
         val startNode = ListNode(-1)
         var currentDigit = startNode
@@ -57,6 +57,6 @@ class P002_AddTwoNumbers {
             currentDigit.next = ListNode(1)
         }
 
-        return startNode.next
+        return startNode.next!!
     }
 }

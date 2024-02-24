@@ -1,4 +1,4 @@
-import org.assertj.core.api.Assertions.assertThat
+import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
 class P496_NextGreaterElement1Test {
@@ -11,7 +11,7 @@ class P496_NextGreaterElement1Test {
 
         val actual = P496_NextGreaterElement1().nextGreaterElement(nums1, nums2)
 
-        assertThat(actual).containsExactly(*expected)
+        actual shouldBe expected
     }
 
     @Test
@@ -23,7 +23,7 @@ class P496_NextGreaterElement1Test {
 
         val actual = P496_NextGreaterElement1().nextGreaterElement(nums1, nums2)
 
-        assertThat(actual).containsExactly(*expected)
+        actual shouldBe expected
     }
 
     @Test
@@ -35,7 +35,7 @@ class P496_NextGreaterElement1Test {
 
         val actual = P496_NextGreaterElement1().nextGreaterElement(nums1, nums2)
 
-        assertThat(actual).containsExactly(*expected)
+        actual shouldBe expected
     }
 
     @Test
@@ -47,6 +47,6 @@ class P496_NextGreaterElement1Test {
 
         val actual = P496_NextGreaterElement1().nextGreaterElement(nums1, nums2)
 
-        assertThat(actual).containsExactly(*expected)
+        actual shouldBe expected
     }
 }
