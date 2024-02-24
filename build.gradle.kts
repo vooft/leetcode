@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -20,6 +22,7 @@ dependencies {
     testImplementation(libs.kotest.runner)
     testImplementation(libs.kotest.datatest)
     testImplementation(libs.kotest.assertions)
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
 tasks.withType<KotlinCompile> {
@@ -31,6 +34,10 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-    testLogging.showStandardStreams = true
+    testLogging {
+        exceptionFormat = TestExceptionFormat.FULL
+        events = setOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
+        showStandardStreams = true
+    }
     jvmArgs("-XX:+HeapDumpOnOutOfMemoryError")
 }
