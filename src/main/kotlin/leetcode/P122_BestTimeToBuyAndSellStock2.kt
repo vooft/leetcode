@@ -32,70 +32,13 @@ package leetcode
  */
 class P122_BestTimeToBuyAndSellStock2 {
     fun maxProfit(prices: IntArray): Int {
-        val session = Session(prices)
-        val profit = session.solve()
-        println("hits ${session.hits}")
-        println("iterations ${session.iterations}")
-        println("profit: $profit")
-        return profit.amount
-    }
-
-    class Session(private val prices: IntArray) {
-        var iterations = 0
-        var hits = 0
-        val purchaseOnCache = mutableMapOf<Int, Profit>()
-
-        fun solve(): Profit {
-            var result = Profit(0, listOf())
-
-            for (index in prices.indices) {
-                val profit = solveRecursively(index)
-                if (result.amount < profit.amount) {
-                    result = profit
-                }
+        var profit = 0
+        for (i in 0..<(prices.size - 1)) {
+            if (prices[i] < prices[i + 1]) {
+                profit += prices[i + 1] - prices[i]
             }
-
-            return result
         }
 
-        private fun solveRecursively(purchaseOn: Int): Profit {
-            val cached = purchaseOnCache[purchaseOn]
-            if (cached != null) {
-                hits++
-                return cached
-            }
-
-            iterations++
-
-            val purchasePrice = prices[purchaseOn]
-
-            var maxProfit = Profit(0, listOf())
-            for (i in (purchaseOn + 1)..<prices.size) {
-                val currentPrice = prices[i]
-                if (purchasePrice >= currentPrice) {
-                    continue
-                }
-
-                val currentProfit = currentPrice - purchasePrice
-
-                var maxFurtherProfit = Profit(0, listOf())
-                for (j in i..<prices.size) {
-                    val furtherProfit = solveRecursively(j)
-                    if (maxFurtherProfit.amount < furtherProfit.amount) {
-                        maxFurtherProfit = furtherProfit
-                    }
-                }
-
-                val totalProfit = currentProfit + maxFurtherProfit.amount
-                if (maxProfit.amount < totalProfit) {
-                    maxProfit = Profit(amount = totalProfit, deals = listOf(purchaseOn to i) + maxFurtherProfit.deals)
-                }
-            }
-
-            purchaseOnCache[purchaseOn] = maxProfit
-            return maxProfit
-        }
-
-        data class Profit(val amount: Int, val deals: List<Pair<Int, Int>>)
+        return profit
     }
 }
