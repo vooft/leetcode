@@ -32,12 +32,18 @@ package leetcode
  */
 class P122_BestTimeToBuyAndSellStock2 {
     fun maxProfit(prices: IntArray): Int {
-        val profit = Session(prices).solve()
+        val session = Session(prices)
+        val profit = session.solve()
+        println("hits ${session.hits}")
+        println("iterations ${session.iterations}")
         println("profit: $profit")
         return profit.amount
     }
 
     class Session(private val prices: IntArray) {
+        var iterations = 0
+        var hits = 0
+        val purchaseOnCache = mutableMapOf<Int, Profit>()
 
         fun solve(): Profit {
             var result = Profit(0, listOf())
@@ -53,6 +59,14 @@ class P122_BestTimeToBuyAndSellStock2 {
         }
 
         private fun solveRecursively(purchaseOn: Int): Profit {
+            val cached = purchaseOnCache[purchaseOn]
+            if (cached != null) {
+                hits++
+                return cached
+            }
+
+            iterations++
+
             val purchasePrice = prices[purchaseOn]
 
             var maxProfit = Profit(0, listOf())
@@ -78,6 +92,7 @@ class P122_BestTimeToBuyAndSellStock2 {
                 }
             }
 
+            purchaseOnCache[purchaseOn] = maxProfit
             return maxProfit
         }
 
