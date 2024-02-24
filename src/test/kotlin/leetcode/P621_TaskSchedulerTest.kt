@@ -51,4 +51,16 @@ class P621_TaskSchedulerTest {
 
         actual shouldBe expected
     }
+
+    @Test
+    fun `corner case with long wait and a lot of tasks`() {
+        val tasks = "A".repeat(20) + "B".repeat(20) + "C".repeat(20) + "D".repeat(10)
+        val n = 2
+
+        val expected = 70
+
+        val actual = P621_TaskScheduler().leastInterval(tasks.toCharArray(), n)
+
+        actual shouldBe expected
+    }
 }
