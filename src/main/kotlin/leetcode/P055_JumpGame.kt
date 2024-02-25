@@ -1,7 +1,5 @@
 package leetcode
 
-import kotlin.math.min
-
 /**
  * https://leetcode.com/problems/jump-game
  *
@@ -25,33 +23,13 @@ import kotlin.math.min
  */
 class P055_JumpGame {
     fun canJump(nums: IntArray): Boolean {
-        val cache = Array<Boolean?>(nums.size) { null }
-        return canJumpFrom(nums, 0, cache)
-    }
-
-    private fun canJumpFrom(nums: IntArray, position: Int, cache: Array<Boolean?>): Boolean {
-        val cached = cache[position]
-        if (cached != null) {
-            return cached
+        var goal = nums.size - 1
+        for (i in (goal - 1) downTo 0) {
+            if (i + nums[i] >= goal) {
+                goal = i
+            }
         }
 
-        return run {
-            if (position == nums.size - 1) {
-                return@run true
-            }
-
-            val distance = nums[position]
-            val startPosition = position + 1
-            val endPosition = min(position + distance, nums.size - 1)
-            for (i in startPosition..endPosition) {
-                if (canJumpFrom(nums, i, cache)) {
-                    return@run true
-                }
-            }
-
-            return@run false
-        }.also {
-            cache[position] = it
-        }
+        return goal == 0
     }
 }
