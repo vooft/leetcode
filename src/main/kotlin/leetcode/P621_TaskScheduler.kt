@@ -43,28 +43,31 @@ class P621_TaskScheduler {
             numberOfTasks[task] = numberOfTasks.getOrDefault(task, 0) + 1
         }
 
-        // can be simplified just by storing counts instead of a pair of task-count
-        val mainQueue = PriorityQueue<TaskCount>(compareByDescending { it.count }).apply {
+        // stores list of tasks ordered by the desc remaining task count
+        val queue = PriorityQueue<TaskCount>(compareByDescending { it.count }).apply {
             addAll(numberOfTasks.map { TaskCount(it.key, it.value) })
         }
-        val tempQueue = PriorityQueue<TaskCount>(compareByDescending { it.count })
 
+        // main idea is to use tasks with the most number of executions
+        // removing from the queue as we go
         val sb = StringBuilder(tasks.size)
         var result = 0
-        while (mainQueue.isNotEmpty()) {
+        while (queue.isNotEmpty()) {
+            // could be faster to reuse the same list, instead of creating a new one on every iteration
+            val remainingTasks = mutableListOf<TaskCount>()
             var currentWindow = 0
-            while (currentWindow <= n && mainQueue.isNotEmpty()) {
-                val taskCount = mainQueue.remove()
+            while (currentWindow <= n && queue.isNotEmpty()) {
+                val taskCount = queue.remove()
                 sb.append(taskCount.task)
                 if (taskCount.count > 1) {
-                    tempQueue.add(taskCount.copy(count = taskCount.count - 1))
+                    remainingTasks.add(taskCount.copy(count = taskCount.count - 1))
                 }
 
                 currentWindow++
             }
 
-            if (tempQueue.isEmpty()) {
-                // final iteration
+            if (remainingTasks.isEmpty()) {
+                // final iteration, no need to wait
                 result += currentWindow
             } else {
                 if (currentWindow <= n) {
@@ -73,8 +76,7 @@ class P621_TaskScheduler {
                 result += n + 1
             }
 
-            mainQueue.addAll(tempQueue)
-            tempQueue.clear()
+            queue.addAll(remainingTasks)
         }
 
         println("|$sb|")
